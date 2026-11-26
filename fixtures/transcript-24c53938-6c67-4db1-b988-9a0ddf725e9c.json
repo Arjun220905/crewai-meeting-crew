@@ -1,0 +1,266 @@
+[
+  {
+    "speaker": "Maya Chen",
+    "start_time": 0.12,
+    "end_time": 4.2,
+    "transcript": "Thanks for jumping on. Let's use this slot to decide what actually goes into the Harbor beta."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 5.36,
+    "end_time": 9.44,
+    "transcript": "I pulled yesterday's invite numbers. We have nineteen eligible testers, six of them on the partner side."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 10.8,
+    "end_time": 15.6,
+    "transcript": "Can we talk through the billing handoff before we put all nineteen in? Support has only seen the sandbox flow."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 17.25,
+    "end_time": 19.65,
+    "transcript": "Yep. First, did everyone see the incident note from Friday?"
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 21.41,
+    "end_time": 25.73,
+    "transcript": "I did. The timeout came from the downstream invoice service, and the retry finally landed twelve minutes later."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 28.5,
+    "end_time": 33.54,
+    "transcript": "Right. The tricky bit is that a late retry can create two pending invoices if the job loses its idempotency token."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 36.79,
+    "end_time": 38.71,
+    "transcript": "Would that show up in the beta dashboard?"
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 39.14,
+    "end_time": 42.74,
+    "transcript": "Only as two pending rows. The dashboard currently treats both of those rows as real."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 45.02,
+    "end_time": 49.1,
+    "transcript": "That would read like a duplicate charge to a customer, even if we never collect the money."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 49.7,
+    "end_time": 53.06,
+    "transcript": "Exactly. I have a trace from Friday that should give us a reproducible case."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 56.125,
+    "end_time": 60.445,
+    "transcript": "Decision one: Tuesday's Harbor beta is internal-only. The partner testers wait until we pass the invoice retry check."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 65.81,
+    "end_time": 69.65,
+    "transcript": "Good. Internal ops has five people who can use test cards without the partner onboarding work."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 71.24,
+    "end_time": 75.56,
+    "transcript": "Our existing support rota can cover that group. I'll update the handoff doc by Monday at 16:00 UTC."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 79.632,
+    "end_time": 83.712,
+    "transcript": "Thanks, Amina. Can the doc also show how to tell an invoice is pending instead of settled?"
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 85.01,
+    "end_time": 87.89,
+    "transcript": "Yes, I'll add a pair of screenshots and the billing status definitions."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 90.62,
+    "end_time": 94.7,
+    "transcript": "There's a sentence in the old runbook saying to retry as soon as you see a spinner."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 96.38,
+    "end_time": 99.26,
+    "transcript": "Please remove that sentence. We should let the retry policy handle it."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 101.375,
+    "end_time": 105.935,
+    "transcript": "I'll run the retry reproduction and post a pass or fail with the trace by Monday at 18:00 UTC."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 109.96,
+    "end_time": 114.04,
+    "transcript": "Can you include the input token in the test version so I can correlate the duplicate rows?"
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 116.2,
+    "end_time": 120.04,
+    "transcript": "Yep. I'll use a synthetic token. The real one doesn't need to leave the incident system."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 122.61,
+    "end_time": 126.21,
+    "transcript": "Other thing: Should the pilot team be able to export the list from the dashboard?"
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 128.14,
+    "end_time": 131.26,
+    "transcript": "We promised viewing for this phase. We never put exports in the invitation."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 133.54,
+    "end_time": 137.62,
+    "transcript": "I can switch the export flag off in the internal environment. We can keep the existing branch."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 141.25,
+    "end_time": 144.61,
+    "transcript": "Second decision: disable CSV export for the internal beta and keep the dashboard read-only."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 149.82,
+    "end_time": 152.46,
+    "transcript": "Got it. No database migration needed. It's already behind a flag."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 155.55,
+    "end_time": 157.47,
+    "transcript": "Should I edit the partner welcome message today?"
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 159.39,
+    "end_time": 162.27,
+    "transcript": "Leave the invite in draft while we wait for the retry results."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 164.8,
+    "end_time": 168.4,
+    "transcript": "We should also add a synthetic-account row to the dashboard screenshots. Can someone take that?"
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 171.1,
+    "end_time": 173.5,
+    "transcript": "I can give whoever takes it an example account identifier."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 175.32,
+    "end_time": 179.64,
+    "transcript": "Let's capture the screenshot task as unassigned for now. We haven't picked who can get into the sandbox."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 183.15,
+    "end_time": 187.95,
+    "transcript": "One more open point. Does Finance need to sign off before we invite partners, even if the retry test passes?"
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 192.78,
+    "end_time": 196.62,
+    "transcript": "I don't know. Keep that open for Finance. I don't want to infer approval from silence."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 200.41,
+    "end_time": 202.81,
+    "transcript": "Would a short video help Finance see the pending rows?"
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 205.73,
+    "end_time": 208.85,
+    "transcript": "The trace and two screenshots should be enough for a yes or no."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 210.36,
+    "end_time": 213.96,
+    "transcript": "Then I'll put the Finance question in the handoff doc so it's easy to find."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 216.84,
+    "end_time": 218.76,
+    "transcript": "Anything else that would block the internal group?"
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 221.47,
+    "end_time": 225.55,
+    "transcript": "The sandbox build is already up. I checked login as an internal tester first thing this morning."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 230.6,
+    "end_time": 234.68,
+    "transcript": "The test account I used is still valid, so I won't need a new one for Monday."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 237.22,
+    "end_time": 240.34,
+    "transcript": "I can ask ops to reserve ten minutes in Tuesday's standup for feedback."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 242.85,
+    "end_time": 246.69,
+    "transcript": "That works. Keep the full demo out of the standup until we have the test result."
+  },
+  {
+    "speaker": "Łukasz Nowak",
+    "start_time": 249.44,
+    "end_time": 253.04,
+    "transcript": "I have enough to update the feature flags. I'll take a look after this call."
+  },
+  {
+    "speaker": "José Rivera",
+    "start_time": 255.09,
+    "end_time": 258.21,
+    "transcript": "I'll capture Thursday's successful invoice case as a baseline for the retry test."
+  },
+  {
+    "speaker": "Maya Chen",
+    "start_time": 262.71,
+    "end_time": 266.55,
+    "transcript": "Okay. We'll regroup after the Monday test and review the Finance answer when it comes in."
+  },
+  {
+    "speaker": "Amina Shah",
+    "start_time": 269.05,
+    "end_time": 271.69,
+    "transcript": "Sounds good. I'll put the draft handoff in the project folder."
+  }
+]

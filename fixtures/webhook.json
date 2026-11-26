@@ -1,0 +1,8 @@
+{
+  "event": "transcription.processed",
+  "bot_event": "transcription.processed",
+  "bot_id": "7eab5c45-6480-4019-9ef1-488671e7b031",
+  "transcript_status": "Success",
+  "status_code": 200,
+  "message": "Transcription processing completed successfully"
+}

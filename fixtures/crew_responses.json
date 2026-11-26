@@ -1,0 +1,93 @@
+{
+  "scribe": {
+    "decisions": [
+      {
+        "id": "D1",
+        "description": "Keep Tuesday’s Harbor beta internal until the invoice retry check passes.",
+        "speaker": "Maya Chen",
+        "timestamp": 56.125
+      },
+      {
+        "id": "D2",
+        "description": "Disable CSV export and keep the internal beta dashboard read-only.",
+        "speaker": "Maya Chen",
+        "timestamp": 141.25
+      }
+    ],
+    "action_items": [
+      {
+        "id": "A1",
+        "task": "Update the support handoff with pending and settled invoice examples.",
+        "owner": "Amina Shah",
+        "due": "Monday at 16:00 UTC",
+        "speaker": "Amina Shah",
+        "timestamp": 71.24
+      },
+      {
+        "id": "A2",
+        "task": "Reproduce invoice retries and post the result with a trace.",
+        "owner": "José Rivera",
+        "due": "Monday at 18:00 UTC",
+        "speaker": "José Rivera",
+        "timestamp": 101.375
+      },
+      {
+        "id": "A3",
+        "task": "Add a synthetic-account row to the dashboard screenshots.",
+        "owner": null,
+        "due": null,
+        "speaker": "Maya Chen",
+        "timestamp": 175.32
+      }
+    ]
+  },
+  "analyst": {
+    "risks": [
+      {
+        "id": "R1",
+        "description": "Late retries may generate two pending invoices that look like duplicate charges.",
+        "severity": "high",
+        "evidence": [
+          {
+            "speaker": "José Rivera",
+            "timestamp": 28.5
+          },
+          {
+            "speaker": "Amina Shah",
+            "timestamp": 45.02
+          }
+        ]
+      }
+    ],
+    "open_questions": [
+      {
+        "id": "Q1",
+        "question": "Does Finance need to approve partner invites after a passing retry test?",
+        "who_should_answer": "Finance",
+        "evidence": [
+          {
+            "speaker": "Amina Shah",
+            "timestamp": 183.15
+          },
+          {
+            "speaker": "Maya Chen",
+            "timestamp": 192.78
+          }
+        ]
+      }
+    ]
+  },
+  "writer": {
+    "subject": "Harbor beta decisions and Monday follow-ups",
+    "body": "Hi team,\n\nTuesday’s Harbor beta is internal-only, with a read-only dashboard and CSV export off. Partner invites stay in draft pending the invoice retry check.\n\nAmina will update the handoff by Monday at 16:00 UTC. José will post the retry check by 18:00 UTC. The synthetic-account screenshot is unassigned. Late retries may look like duplicate charges, and Finance still needs to tell us whether partner invites require its approval.",
+    "referenced_item_ids": [
+      "D1",
+      "D2",
+      "A1",
+      "A2",
+      "A3",
+      "R1",
+      "Q1"
+    ]
+  }
+}
