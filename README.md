@@ -2,11 +2,11 @@
 
 Turn a MeetStream post-call transcript into a cited meeting recap and a follow-up draft with CrewAI and Gemini. Decisions, owners, deadlines, risks, and open questions stay linked to the source transcript. The app writes both files locally for human review.
 
-[Quickstart](QUICKSTART.md) · [Live webhook setup](QUICKSTART.md#run-with-a-live-meeting) · [Design decisions](DECISIONS.md) · [MeetStream API and reference projects](RECON.md)
+[Quickstart](QUICKSTART.md) · [Live webhook setup](QUICKSTART.md#run-with-a-live-meeting) · [Troubleshooting](QUICKSTART.md#troubleshooting)
 
 ## Try it locally
 
-On macOS or Linux, install Git, `make`, and [uv](https://docs.astral.sh/uv/getting-started/installation/). Run these commands from the repository root.
+On macOS or Linux, install Git, `make`, and uv. Clone the repository using the quickstart, then run these commands from the repository root. [Quickstart](QUICKSTART.md#run-the-fixture-demo) · [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ```sh
 make start

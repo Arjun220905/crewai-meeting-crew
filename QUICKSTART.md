@@ -2,7 +2,7 @@
 
 ## Run the fixture demo
 
-Use macOS or Linux with Git, `make`, and [uv](https://docs.astral.sh/uv/getting-started/installation/).
+On macOS or Linux, install Git, `make`, and uv. Start from a fresh clone to use the demo defaults. [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ```sh
 git clone https://github.com/Arjun220905/crewai-meeting-recap.git
@@ -14,7 +14,7 @@ make stop
 
 `make start` launches a background server and prints its port and log path. The first start needs internet access to install dependencies. The bundled demo runs with the default settings and needs zero credentials.
 
-Look for `202 accepted` on the first delivery and `200 duplicate` after the worker finishes. Open the output folder printed by `make replay`. It contains `recap.json` and `followup_draft.md`. The script checks the fixture's decisions and owners, transcript citations, draft reference IDs, and unchanged file contents after replay.
+Look for `202 accepted` on the first delivery and `200 duplicate` on replay. Open the output folder printed by `make replay`. It contains `recap.json` and `followup_draft.md`. The script checks the fixture's decisions and owners, transcript citations, draft reference IDs, and unchanged file contents after replay.
 
 If you've already run the demo, a repeat should return `duplicate`. To see a new first delivery, point start and replay at a fresh directory inside `out/`. Stop any already-running server first.
 
@@ -34,7 +34,7 @@ This runs the three roles using the fictional meeting and the live Gemini API. T
 
 Use a test workspace and a meeting whose participants have agreed to recording and transcript processing. You need a MeetStream API key, a Gemini API key, and a public HTTPS endpoint pointed at the local listener.
 
-1. Stop the demo with `make stop`. Copy [.env.example](.env.example) to `.env` on first setup, then set the values below. Keep an existing `.env` and edit the needed lines if you've already configured the project.
+1. Stop the demo with `make stop`. On first setup, run `cp .env.example .env`. Set the MeetStream and Gemini API keys and the options below in `.env`. You'll fill in the signing secret after creating the webhook. [.env.example](.env.example)
 
    ```dotenv
    TRANSCRIPT_SOURCE=meetstream
@@ -47,7 +47,7 @@ Use a test workspace and a meeting whose participants have agreed to recording a
 
 2. Point an HTTPS tunnel or reverse proxy at `127.0.0.1:3000`. For example, with ngrok configured, run `ngrok http 3000` in another terminal. In MeetStream, open **Configure → Webhooks → Add Webhook**. Set the URL to your HTTPS host followed by `/webhook`, and subscribe to `transcription.processed`. Save the generated signing secret to `MEETSTREAM_WEBHOOK_SECRET` in `.env`. [Local tunnel setup](https://docs.meetstream.ai/guides/webhooks/local-webhook-server) · [Workspace webhook setup](https://docs.meetstream.ai/guides/webhooks/workspace-webhooks)
 3. Run `make start`. Visit `/health` through the public URL and confirm it returns `{"status":"ok"}`. Start a MeetStream bot in the test call with a **post-call** transcription provider. End the meeting after a short discussion. [Post-call transcription setup](https://docs.meetstream.ai/guides/transcription-recordings/post-call-transcription)
-4. In the webhook delivery log, confirm the delivery reached this endpoint. Check `.run/server.log` for a processed run, then open both files under `out/live/<bot_id>/<run_id>/`. Compare the recap and draft with the relevant transcript lines. Resend the delivery for this endpoint to verify the duplicate response and confirm both files remain unchanged.
+4. In the MeetStream webhook delivery log, look for HTTP `202`. Check `.run/server.log` for a processed run, then open `recap.json` and `followup_draft.md` under `out/live/<bot_id>/<run_id>/`. Compare the recap and draft with the relevant transcript lines. Resend the delivery from the webhook log and confirm it returns `200 duplicate` and leaves both files unchanged.
 5. Run `make stop`. Close the temporary tunnel and disable its test webhook when finished.
 
 The app receives the signed workspace notification, reads the transcript from MeetStream, and sends the text to Gemini. It saves the recap and draft to disk. Keep `.env`, live logs, and generated files local.
