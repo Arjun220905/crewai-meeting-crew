@@ -2,11 +2,11 @@
 
 ## Run the fixture demo
 
-Use macOS or Linux with Git, `make`, and [uv](https://docs.astral.sh/uv/getting-started/installation/). Sign in to GitHub with an account that has access to the repository.
+Use macOS or Linux with Git, `make`, and [uv](https://docs.astral.sh/uv/getting-started/installation/).
 
 ```sh
-git clone https://github.com/Arjun220905/crewai-meeting-crew.git
-cd crewai-meeting-crew
+git clone https://github.com/Arjun220905/crewai-meeting-recap.git
+cd crewai-meeting-recap
 make start
 make replay
 make stop

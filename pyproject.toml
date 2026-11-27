@@ -1,5 +1,5 @@
 [project]
-name = "crewai-meeting-crew"
+name = "crewai-meeting-recap"
 version = "0.1.0"
 description = "A MeetStream Labs example for post-meeting recaps and follow-up drafts"
 requires-python = ">=3.12,<3.14"

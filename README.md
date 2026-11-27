@@ -1,4 +1,4 @@
-# CrewAI Meeting Crew
+# CrewAI Meeting Recap
 
 Turn a MeetStream post-call transcript into a cited meeting recap and a follow-up draft with CrewAI and Gemini. Decisions, owners, deadlines, risks, and open questions stay linked to the source transcript. The app writes both files locally for human review.
 
